@@ -106,6 +106,99 @@ def headline(R: dict) -> str:
     )
 
 
+def plain_english(R: dict) -> str:
+    """The results explained without jargon. Every number is formatted from `R`."""
+    sel = R["selection"]["selected"]
+    test = R["data"]["splits"]["test"]
+    t = R["models"][sel]["recall_target"]["test"]
+    base = R["models"]["age_sex_baseline"]["test"]
+    lr = R["models"]["logistic_regression"]["test"]
+    d = R["paired_differences_test"]["xgboost_minus_logistic_regression"]["roc_auc"]
+    n = t["tp"] + t["fn"] + t["fp"] + t["tn"]
+
+    def per_1000(x: int) -> int:
+        return round(x / n * 1000)
+
+    ages = {g["group"]: g for g in R["subgroups_selected"]["age_band"]}
+    young, old = ages[min(ages)], ages[max(ages)]
+    top = R["importance"]["permutation_selected"][0]["feature"]
+    out: list[str] = []
+    w = out.append
+    w(
+        f"**The task.** The survey asked adults whether a doctor ever told them they had coronary heart "
+        f"disease, angina or a heart attack. Using only age, sex, body measurements, blood pressure, "
+        f"blood tests, smoking, diabetes and alcohol answers, can a model tell who said yes? "
+        f"In the {test['survey_years']} test group, {pct(test['prevalence'])} of adults said yes "
+        f"({test['positives']} of {test['n']:,}).\n"
+    )
+    w(
+        f"**How good is the ranking?** Pick one person who said yes and one who said no, at random. "
+        f"The model gives the higher risk score to the person who said yes in about "
+        f"{round(lr['roc_auc'] * 100)} of 100 such pairs (that is the ROC-AUC of {pct(lr['roc_auc'])}). "
+        f"A coin flip would get 50 of 100. A model that only knows age and sex gets about "
+        f"{round(base['roc_auc'] * 100)}. So the other health measurements add a real but modest gain.\n"
+    )
+    verdict = (
+        "The three models are statistically tied"
+        if d[1] <= 0 <= d[2]
+        else "The models differ by more than chance"
+    )
+    w(
+        f"**Is the fancy model better?** {verdict}: logistic regression (the simple one), random forest and "
+        f"XGBoost all score about {round(lr['roc_auc'] * 100)} of 100. XGBoost minus logistic regression is "
+        f"{pp(d[0])}, and the 95% interval ({pp(d[1])} to {pp(d[2])}) includes zero, so the data cannot "
+        f"show a winner. The simple model is used because it is easier to explain.\n"
+    )
+    w(
+        f"**What matters most.** Age, by a wide margin (the top feature is `{top}`). Older people report "
+        f"heart disease far more often, so a model that knows age already does most of the work.\n"
+    )
+    w(
+        f"**Why not just report accuracy?** Saying 'no heart disease' to everyone is right "
+        f"{pct(R['data']['majority_class_accuracy_test'])} of the time and finds nobody. "
+        f"So the model is judged on how many real cases it finds (recall) and how many people it "
+        f"flags who did not say yes (false alarms).\n"
+    )
+    w(
+        f"**The trade-off at the chosen setting.** The cut-off was set on the earlier "
+        f"{R['data']['splits']['valid']['survey_years']} data so that "
+        f"at least {pct(R['models'][sel]['recall_target']['target'], 0)} of cases would be caught, then applied "
+        f"once to the 2017-2018 data. Out of every 1,000 adults in the test group:\n"
+    )
+    w(
+        f"* about {per_1000(t['tp'] + t['fn'])} said yes, and the model flagged {per_1000(t['tp'])} of them;"
+    )
+    w(f"* it missed about {per_1000(t['fn'])};")
+    w(
+        f"* it also flagged about {per_1000(t['fp'])} people who did not say yes (false alarms), "
+        f"which is {t['false_alarms_per_case_found']:.1f} false alarms for every case found;"
+    )
+    w(
+        f"* in total it flagged {pct(t['flagged_share'], 0)} of adults, so catching almost every case "
+        f"means flagging nearly half of everyone.\n"
+    )
+    w(
+        f"**Who gets flagged.** Mostly older adults: {pct(old['flagged_share'], 0)} of the {old['group']} "
+        f"group is flagged and {pct(old['recall'], 0)} of their cases are caught, but only "
+        f"{pct(young['flagged_share'], 0)} of the {young['group']} group is flagged and "
+        f"just {pct(young['recall'], 0)} of their cases are caught ({young['positives']} cases, too few to "
+        f"trust). The recall target is met mostly by flagging most older adults.\n"
+    )
+    w(
+        "**What this is not.** It is not a diagnosis and not a screening tool. The answers are "
+        "self-reported, the data cover the U.S. household population, and the results do not transfer "
+        "to hospital patients.\n"
+    )
+    w(
+        "**Words used in the tables.** *ROC-AUC*: the pair-ranking score above (50% is chance, 100% is "
+        "perfect). *PR-AUC*: a score that focuses on how clean the flagged group is, useful when cases are "
+        "rare. *Recall*: the share of real cases the model flags. *Flagged*: scored above the cut-off. "
+        "*False alarm*: flagged but did not say yes. *95% interval*: the range the true value probably "
+        f"falls in, found by re-running the test on {R['meta']['n_boot']:,} reshuffled copies of the data."
+    )
+    return "\n".join(out)
+
+
 def render_results(R: dict) -> str:
     sel = R["selection"]["selected"]
     D = R["data"]
@@ -123,6 +216,9 @@ def render_results(R: dict) -> str:
         'had ...". This is not a clinical diagnosis. NHANES is a survey of the U.S. household population, '
         "so results do not transfer to hospital patients. See the Limitations section of the README.\n"
     )
+
+    w("## In plain English\n")
+    w(plain_english(R) + "\n")
 
     w("## 1. Headline\n")
     w(headline(R) + "\n")
@@ -646,7 +742,7 @@ def update_readme_headline(R: dict, readme: Path) -> bool:
     if not readme.exists():
         return False
     text = readme.read_text(encoding="utf-8")
-    new = _replace_block(text, "HEADLINE", headline(R))
+    new = _replace_block(text, "PLAIN", plain_english(R))
     new = _replace_block(new, "TABLE", readme_table(R))
     if new != text:
         readme.write_text(new, encoding="utf-8")

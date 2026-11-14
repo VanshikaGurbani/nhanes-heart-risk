@@ -1,0 +1,2014 @@
+{
+  "meta": {
+    "seed": 42,
+    "n_boot": 1000,
+    "python": "3.13.5",
+    "sklearn": "1.9.1",
+    "xgboost": "3.4.1",
+    "pandas": "3.1.1",
+    "cycles": [
+      {
+        "letter": "G",
+        "years": "2011-2012",
+        "split": "train"
+      },
+      {
+        "letter": "H",
+        "years": "2013-2014",
+        "split": "train"
+      },
+      {
+        "letter": "I",
+        "years": "2015-2016",
+        "split": "valid"
+      },
+      {
+        "letter": "J",
+        "years": "2017-2018",
+        "split": "test"
+      }
+    ],
+    "features_numeric": [
+      "age_years",
+      "bmi",
+      "waist_cm",
+      "sbp_mean",
+      "dbp_mean",
+      "total_chol",
+      "hdl",
+      "hba1c",
+      "fasting_glucose",
+      "drinks_per_day"
+    ],
+    "features_categorical": [
+      "sex",
+      "smoking_status",
+      "diabetes",
+      "ever_heavy_drinker"
+    ]
+  },
+  "data": {
+    "splits": {
+      "train": {
+        "cycles": [
+          "G",
+          "H"
+        ],
+        "survey_years": "2011-2012, 2013-2014",
+        "n": 11290,
+        "positives": 752,
+        "prevalence": 0.06660761736049602
+      },
+      "valid": {
+        "cycles": [
+          "I"
+        ],
+        "survey_years": "2015-2016",
+        "n": 5688,
+        "positives": 428,
+        "prevalence": 0.07524613220815753
+      },
+      "test": {
+        "cycles": [
+          "J"
+        ],
+        "survey_years": "2017-2018",
+        "n": 5534,
+        "positives": 457,
+        "prevalence": 0.08258041199855438
+      }
+    },
+    "n_total": 22512,
+    "positives_total": 1637,
+    "missingness": {
+      "overall": {
+        "age_years": 0.0,
+        "bmi": 0.056458777540867096,
+        "waist_cm": 0.10230099502487562,
+        "sbp_mean": 0.08102345415778252,
+        "dbp_mean": 0.0832000710732054,
+        "total_chol": 0.10030206112295664,
+        "hdl": 0.10030206112295664,
+        "hba1c": 0.08777540867093106,
+        "fasting_glucose": 0.5608120113717129,
+        "drinks_per_day": 0.25892857142857145,
+        "sex": 0.0,
+        "smoking_status": 0.0008439943141435679,
+        "diabetes": 0.0005774697938877043,
+        "ever_heavy_drinker": 0.2589729921819474
+      },
+      "by_split": {
+        "train": {
+          "age_years": 0.0,
+          "bmi": 0.050132860938883965,
+          "waist_cm": 0.09495128432240921,
+          "sbp_mean": 0.07590788308237378,
+          "dbp_mean": 0.07794508414526129,
+          "total_chol": 0.09450841452612932,
+          "hdl": 0.09450841452612932,
+          "hba1c": 0.08060230292294066,
+          "fasting_glucose": 0.5543844109831709,
+          "drinks_per_day": 0.26678476527900796,
+          "sex": 0.0,
+          "smoking_status": 0.0007971656333038087,
+          "diabetes": 0.0005314437555358724,
+          "ever_heavy_drinker": 0.266696191319752
+        },
+        "valid": {
+          "age_years": 0.0,
+          "bmi": 0.05467651195499297,
+          "waist_cm": 0.10566104078762306,
+          "sbp_mean": 0.07049929676511955,
+          "dbp_mean": 0.0729606188466948,
+          "total_chol": 0.09845288326300984,
+          "hdl": 0.09845288326300984,
+          "hba1c": 0.09071729957805907,
+          "fasting_glucose": 0.5708509142053446,
+          "drinks_per_day": 0.2858649789029536,
+          "sex": 0.0,
+          "smoking_status": 0.0017580872011251757,
+          "diabetes": 0.0005274261603375527,
+          "ever_heavy_drinker": 0.28568917018284107
+        },
+        "test": {
+          "age_years": 0.0,
+          "bmi": 0.07119624141669678,
+          "waist_cm": 0.11384170581857607,
+          "sbp_mean": 0.10227683411637152,
+          "dbp_mean": 0.10444524756053487,
+          "total_chol": 0.11402240693892302,
+          "hdl": 0.11402240693892302,
+          "hba1c": 0.09938561619082038,
+          "fasting_glucose": 0.563606794362125,
+          "drinks_per_day": 0.21521503433321287,
+          "sex": 0.0,
+          "smoking_status": 0.0,
+          "diabetes": 0.0007228044813877846,
+          "ever_heavy_drinker": 0.2157571376942537
+        }
+      },
+      "examined_share": 0.957133972992182,
+      "complete_case_share": 0.32213930348258707
+    },
+    "label_components": {
+      "chd": 937,
+      "angina": 559,
+      "heart_attack": 954,
+      "chf": 769,
+      "stroke": 898
+    },
+    "majority_class_accuracy_test": 0.9174195880014456,
+    "prevalence_by_cycle": {
+      "G": 0.06374142289635247,
+      "H": 0.06936717663421418,
+      "I": 0.07524613220815753,
+      "J": 0.08258041199855438
+    },
+    "funnel": [
+      {
+        "cycle": "G",
+        "all_participants": 9756,
+        "adults_20_plus": 5560,
+        "adults_with_mcq": 5560,
+        "adults_with_label": 5538
+      },
+      {
+        "cycle": "H",
+        "all_participants": 10175,
+        "adults_20_plus": 5769,
+        "adults_with_mcq": 5769,
+        "adults_with_label": 5752
+      },
+      {
+        "cycle": "I",
+        "all_participants": 9971,
+        "adults_20_plus": 5719,
+        "adults_with_mcq": 5719,
+        "adults_with_label": 5688
+      },
+      {
+        "cycle": "J",
+        "all_participants": 9254,
+        "adults_20_plus": 5569,
+        "adults_with_mcq": 5569,
+        "adults_with_label": 5534
+      }
+    ]
+  },
+  "selection": {
+    "rule": "a model replaces logistic regression only if the paired bootstrap 95% interval of its validation PR-AUC gap is above zero",
+    "evidence": {
+      "random_forest": {
+        "pr_auc_gap_vs_logistic": 0.01172089573730517,
+        "lo": -0.012882514646992338,
+        "hi": 0.035662862655174925,
+        "qualifies": false
+      },
+      "xgboost": {
+        "pr_auc_gap_vs_logistic": 0.0115541614712526,
+        "lo": -0.0066063011522698905,
+        "hi": 0.028445232382035522,
+        "qualifies": false
+      }
+    },
+    "selected": "logistic_regression",
+    "valid_pr_auc": {
+      "age_sex_baseline": 0.22858080961908328,
+      "logistic_regression": 0.2880404454010945,
+      "random_forest": 0.2997613411383997,
+      "xgboost": 0.2995946068723471
+    }
+  },
+  "models": {
+    "age_sex_baseline": {
+      "params": {
+        "C": 1.0
+      },
+      "strategy": "median",
+      "valid": {
+        "roc_auc": 0.8152719786077254,
+        "pr_auc": 0.22858080961908328,
+        "brier": 0.06256465944850251
+      },
+      "test": {
+        "roc_auc": 0.7952089247901788,
+        "pr_auc": 0.2266200236180669,
+        "brier": 0.06877787889511748,
+        "roc_auc_ci": [
+          0.7754339555594821,
+          0.8129964185095757
+        ],
+        "pr_auc_ci": [
+          0.19765943366913172,
+          0.25812694520166857
+        ]
+      },
+      "default_threshold_test": {
+        "threshold": 0.5,
+        "accuracy": 0.9174195880014456,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "specificity": 1.0,
+        "false_positive_rate": 0.0,
+        "flagged_share": 0.0,
+        "false_alarms_per_case_found": null,
+        "people_flagged_per_case_found": null,
+        "tn": 5077,
+        "fp": 0,
+        "fn": 457,
+        "tp": 0
+      },
+      "recall_target": {
+        "target": 0.9,
+        "threshold": 0.039796602341685,
+        "valid": {
+          "threshold": 0.039796602341685,
+          "accuracy": 0.5889592123769339,
+          "precision": 0.14418777943368108,
+          "recall": 0.9042056074766355,
+          "f1": 0.2487146529562982,
+          "specificity": 0.5633079847908745,
+          "false_positive_rate": 0.4366920152091255,
+          "flagged_share": 0.47187060478199716,
+          "false_alarms_per_case_found": 5.935400516795865,
+          "people_flagged_per_case_found": 6.935400516795865,
+          "tn": 2963,
+          "fp": 2297,
+          "fn": 41,
+          "tp": 387
+        },
+        "test": {
+          "threshold": 0.039796602341685,
+          "accuracy": 0.5388507408745934,
+          "precision": 0.14334354783792985,
+          "recall": 0.9212253829321663,
+          "f1": 0.24808485562757807,
+          "specificity": 0.5044317510340752,
+          "false_positive_rate": 0.4955682489659248,
+          "flagged_share": 0.5307191904589809,
+          "false_alarms_per_case_found": 5.97624703087886,
+          "people_flagged_per_case_found": 6.97624703087886,
+          "tn": 2561,
+          "fp": 2516,
+          "fn": 36,
+          "tp": 421
+        },
+        "test_recall_ci": [
+          0.8957850992341491,
+          0.9443238059886166
+        ],
+        "test_precision_ci": [
+          0.13077450598035312,
+          0.15594507253218556
+        ]
+      },
+      "calibration_test": {
+        "brier": 0.06877787889511748,
+        "ece": 0.009917507295836398,
+        "intercept": 0.10064183076649787,
+        "slope": 1.0036874251864283,
+        "mean_predicted": 0.07640474479534672,
+        "observed_rate": 0.08258041199855438
+      },
+      "calibration_table_test": [
+        {
+          "n": 554,
+          "mean_predicted": 0.005358112786679979,
+          "observed_rate": 0.010830324909747292
+        },
+        {
+          "n": 554,
+          "mean_predicted": 0.008908085693962245,
+          "observed_rate": 0.0018050541516245488
+        },
+        {
+          "n": 554,
+          "mean_predicted": 0.013993959080405079,
+          "observed_rate": 0.010830324909747292
+        },
+        {
+          "n": 554,
+          "mean_predicted": 0.022470097056565014,
+          "observed_rate": 0.016245487364620937
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.036331550358281235,
+          "observed_rate": 0.039783001808318265
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.055286857720630966,
+          "observed_rate": 0.0650994575045208
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.0793994011278983,
+          "observed_rate": 0.10849909584086799
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.11236705971219492,
+          "observed_rate": 0.13924050632911392
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.17141041440346172,
+          "observed_rate": 0.17721518987341772
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.25898282994930766,
+          "observed_rate": 0.25678119349005424
+        }
+      ],
+      "grid": []
+    },
+    "logistic_regression": {
+      "params": {
+        "C": 0.3
+      },
+      "strategy": "median_indicator",
+      "valid": {
+        "roc_auc": 0.8479043033296614,
+        "pr_auc": 0.2880404454010945,
+        "brier": 0.06018907665665986
+      },
+      "test": {
+        "roc_auc": 0.8285279776776805,
+        "pr_auc": 0.2756952574104912,
+        "brier": 0.06649308960938562,
+        "roc_auc_ci": [
+          0.8113735622637154,
+          0.8451811659529712
+        ],
+        "pr_auc_ci": [
+          0.24296731939733987,
+          0.3151507362895118
+        ]
+      },
+      "default_threshold_test": {
+        "threshold": 0.5,
+        "accuracy": 0.9165160823997108,
+        "precision": 0.43243243243243246,
+        "recall": 0.0350109409190372,
+        "f1": 0.06477732793522267,
+        "specificity": 0.9958636990348632,
+        "false_positive_rate": 0.004136300965136892,
+        "flagged_share": 0.006685941452837007,
+        "false_alarms_per_case_found": 1.3125,
+        "people_flagged_per_case_found": 2.3125,
+        "tn": 5056,
+        "fp": 21,
+        "fn": 441,
+        "tp": 16
+      },
+      "recall_target": {
+        "target": 0.9,
+        "threshold": 0.039107672042238875,
+        "valid": {
+          "threshold": 0.039107672042238875,
+          "accuracy": 0.6424050632911392,
+          "precision": 0.16232127838519764,
+          "recall": 0.9018691588785047,
+          "f1": 0.2751247327156094,
+          "specificity": 0.6212927756653992,
+          "false_positive_rate": 0.37870722433460074,
+          "flagged_share": 0.4180731364275668,
+          "false_alarms_per_case_found": 5.160621761658031,
+          "people_flagged_per_case_found": 6.160621761658031,
+          "tn": 3268,
+          "fp": 1992,
+          "fn": 42,
+          "tp": 386
+        },
+        "test": {
+          "threshold": 0.039107672042238875,
+          "accuracy": 0.5957715937838814,
+          "precision": 0.1595256312165264,
+          "recall": 0.912472647702407,
+          "f1": 0.271572777596874,
+          "specificity": 0.5672641323616309,
+          "false_positive_rate": 0.43273586763836913,
+          "flagged_share": 0.47235272858691724,
+          "false_alarms_per_case_found": 5.2685851318944845,
+          "people_flagged_per_case_found": 6.2685851318944845,
+          "tn": 2880,
+          "fp": 2197,
+          "fn": 40,
+          "tp": 417
+        },
+        "test_recall_ci": [
+          0.8874109916192932,
+          0.9377715718079973
+        ],
+        "test_precision_ci": [
+          0.14611453548416933,
+          0.17279333127592383
+        ]
+      },
+      "calibration_test": {
+        "brier": 0.06649308960938562,
+        "ece": 0.011405195790876286,
+        "intercept": -0.04476559086525308,
+        "slope": 0.9594747522926859,
+        "mean_predicted": 0.08070819198245288,
+        "observed_rate": 0.08258041199855438
+      },
+      "calibration_table_test": [
+        {
+          "n": 554,
+          "mean_predicted": 0.0038011327678956174,
+          "observed_rate": 0.005415162454873646
+        },
+        {
+          "n": 554,
+          "mean_predicted": 0.007098265054462072,
+          "observed_rate": 0.005415162454873646
+        },
+        {
+          "n": 554,
+          "mean_predicted": 0.011457369662862725,
+          "observed_rate": 0.005415162454873646
+        },
+        {
+          "n": 554,
+          "mean_predicted": 0.01798860705399036,
+          "observed_rate": 0.019855595667870037
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.027793114889167424,
+          "observed_rate": 0.02531645569620253
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.04420100846617735,
+          "observed_rate": 0.039783001808318265
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.0714902766432362,
+          "observed_rate": 0.08860759493670886
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.1121385291540574,
+          "observed_rate": 0.12115732368896925
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.1801865189780547,
+          "observed_rate": 0.21699819168173598
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.33143792426744706,
+          "observed_rate": 0.298372513562387
+        }
+      ],
+      "grid": [
+        {
+          "C": 0.01,
+          "valid_pr_auc": 0.28566387304636565
+        },
+        {
+          "C": 0.03,
+          "valid_pr_auc": 0.2875099642400561
+        },
+        {
+          "C": 0.1,
+          "valid_pr_auc": 0.28782926558282285
+        },
+        {
+          "C": 0.3,
+          "valid_pr_auc": 0.2880404454010945
+        },
+        {
+          "C": 1.0,
+          "valid_pr_auc": 0.2875138640488972
+        },
+        {
+          "C": 3.0,
+          "valid_pr_auc": 0.2873662490291827
+        }
+      ]
+    },
+    "random_forest": {
+      "params": {
+        "min_samples_leaf": 40,
+        "max_features": 0.5
+      },
+      "strategy": "median_indicator",
+      "valid": {
+        "roc_auc": 0.8516430652784195,
+        "pr_auc": 0.2997613411383997,
+        "brier": 0.05935492886519168
+      },
+      "test": {
+        "roc_auc": 0.828687016445643,
+        "pr_auc": 0.2841293232656303,
+        "brier": 0.06611557287332127,
+        "roc_auc_ci": [
+          0.8120207883444932,
+          0.8457269546077403
+        ],
+        "pr_auc_ci": [
+          0.2488535488310731,
+          0.324742602529745
+        ]
+      },
+      "default_threshold_test": {
+        "threshold": 0.5,
+        "accuracy": 0.9174195880014456,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "specificity": 1.0,
+        "false_positive_rate": 0.0,
+        "flagged_share": 0.0,
+        "false_alarms_per_case_found": null,
+        "people_flagged_per_case_found": null,
+        "tn": 5077,
+        "fp": 0,
+        "fn": 457,
+        "tp": 0
+      },
+      "recall_target": {
+        "target": 0.9,
+        "threshold": 0.05747290329361101,
+        "valid": {
+          "threshold": 0.05747290329361101,
+          "accuracy": 0.6735232067510548,
+          "precision": 0.1753748296228987,
+          "recall": 0.9018691588785047,
+          "f1": 0.2936477748193229,
+          "specificity": 0.6549429657794676,
+          "false_positive_rate": 0.3450570342205323,
+          "flagged_share": 0.3869549929676512,
+          "false_alarms_per_case_found": 4.7020725388601035,
+          "people_flagged_per_case_found": 5.7020725388601035,
+          "tn": 3445,
+          "fp": 1815,
+          "fn": 42,
+          "tp": 386
+        },
+        "test": {
+          "threshold": 0.05747290329361101,
+          "accuracy": 0.6447415973979038,
+          "precision": 0.17408207343412527,
+          "recall": 0.8818380743982495,
+          "f1": 0.2907647907647908,
+          "specificity": 0.6233996454599173,
+          "false_positive_rate": 0.3766003545400827,
+          "flagged_share": 0.4183230936031803,
+          "false_alarms_per_case_found": 4.744416873449132,
+          "people_flagged_per_case_found": 5.744416873449132,
+          "tn": 3165,
+          "fp": 1912,
+          "fn": 54,
+          "tp": 403
+        },
+        "test_recall_ci": [
+          0.8506773248718574,
+          0.9089031201848998
+        ],
+        "test_precision_ci": [
+          0.15945498237798708,
+          0.18888091037942278
+        ]
+      },
+      "calibration_test": {
+        "brier": 0.06611557287332127,
+        "ece": 0.0060576414527316776,
+        "intercept": 0.05884473575771506,
+        "slope": 1.008076573766741,
+        "mean_predicted": 0.07969057037430426,
+        "observed_rate": 0.08258041199855438
+      },
+      "calibration_table_test": [
+        {
+          "n": 554,
+          "mean_predicted": 0.0011483305484478296,
+          "observed_rate": 0.0036101083032490976
+        },
+        {
+          "n": 554,
+          "mean_predicted": 0.0039624353253946715,
+          "observed_rate": 0.005415162454873646
+        },
+        {
+          "n": 554,
+          "mean_predicted": 0.009195921497702179,
+          "observed_rate": 0.01263537906137184
+        },
+        {
+          "n": 554,
+          "mean_predicted": 0.018211132952215634,
+          "observed_rate": 0.01263537906137184
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.03112345703896108,
+          "observed_rate": 0.03074141048824593
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.05034350492349503,
+          "observed_rate": 0.04701627486437613
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.07888807324528524,
+          "observed_rate": 0.07233273056057866
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.1209447171553493,
+          "observed_rate": 0.12658227848101267
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.1829608622442597,
+          "observed_rate": 0.21338155515370705
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.30064488989904486,
+          "observed_rate": 0.30198915009041594
+        }
+      ],
+      "grid": [
+        {
+          "min_samples_leaf": 10,
+          "max_features": "sqrt",
+          "valid_pr_auc": 0.2849069972495648
+        },
+        {
+          "min_samples_leaf": 10,
+          "max_features": 0.5,
+          "valid_pr_auc": 0.2975552015752575
+        },
+        {
+          "min_samples_leaf": 20,
+          "max_features": "sqrt",
+          "valid_pr_auc": 0.28544284428144295
+        },
+        {
+          "min_samples_leaf": 20,
+          "max_features": 0.5,
+          "valid_pr_auc": 0.2988234384705619
+        },
+        {
+          "min_samples_leaf": 40,
+          "max_features": "sqrt",
+          "valid_pr_auc": 0.28402718528912574
+        },
+        {
+          "min_samples_leaf": 40,
+          "max_features": 0.5,
+          "valid_pr_auc": 0.2997613411383997
+        },
+        {
+          "min_samples_leaf": 80,
+          "max_features": "sqrt",
+          "valid_pr_auc": 0.275630188114819
+        },
+        {
+          "min_samples_leaf": 80,
+          "max_features": 0.5,
+          "valid_pr_auc": 0.2958521417004263
+        },
+        {
+          "min_samples_leaf": 160,
+          "max_features": "sqrt",
+          "valid_pr_auc": 0.26393268290840516
+        },
+        {
+          "min_samples_leaf": 160,
+          "max_features": 0.5,
+          "valid_pr_auc": 0.2869714368272791
+        }
+      ]
+    },
+    "xgboost": {
+      "params": {
+        "max_depth": 2,
+        "min_child_weight": 1,
+        "n_estimators": 151
+      },
+      "strategy": "median_indicator",
+      "valid": {
+        "roc_auc": 0.8527015742155574,
+        "pr_auc": 0.2995946068723471,
+        "brier": 0.059602558612823486
+      },
+      "test": {
+        "roc_auc": 0.8295350077084237,
+        "pr_auc": 0.2771667236147233,
+        "brier": 0.0665036216378212,
+        "roc_auc_ci": [
+          0.8122876095528423,
+          0.8462990987438702
+        ],
+        "pr_auc_ci": [
+          0.24279644313159193,
+          0.31511970010064283
+        ]
+      },
+      "default_threshold_test": {
+        "threshold": 0.5,
+        "accuracy": 0.9172388868810987,
+        "precision": 0.47368421052631576,
+        "recall": 0.019693654266958426,
+        "f1": 0.037815126050420166,
+        "specificity": 0.9980303328737443,
+        "false_positive_rate": 0.0019696671262556626,
+        "flagged_share": 0.0034333212865919767,
+        "false_alarms_per_case_found": 1.1111111111111112,
+        "people_flagged_per_case_found": 2.111111111111111,
+        "tn": 5067,
+        "fp": 10,
+        "fn": 448,
+        "tp": 9
+      },
+      "recall_target": {
+        "target": 0.9,
+        "threshold": 0.04771184176206589,
+        "valid": {
+          "threshold": 0.04771184176206589,
+          "accuracy": 0.6518987341772152,
+          "precision": 0.16609294320137694,
+          "recall": 0.9018691588785047,
+          "f1": 0.2805232558139535,
+          "specificity": 0.6315589353612168,
+          "false_positive_rate": 0.3684410646387833,
+          "flagged_share": 0.4085794655414909,
+          "false_alarms_per_case_found": 5.020725388601036,
+          "people_flagged_per_case_found": 6.020725388601036,
+          "tn": 3322,
+          "fp": 1938,
+          "fn": 42,
+          "tp": 386
+        },
+        "test": {
+          "threshold": 0.04771184176206589,
+          "accuracy": 0.6093241778099024,
+          "precision": 0.16370808678500987,
+          "recall": 0.9080962800875274,
+          "f1": 0.27740641711229946,
+          "specificity": 0.5824305692337994,
+          "false_positive_rate": 0.4175694307662005,
+          "flagged_share": 0.4580773400795085,
+          "false_alarms_per_case_found": 5.108433734939759,
+          "people_flagged_per_case_found": 6.108433734939759,
+          "tn": 2957,
+          "fp": 2120,
+          "fn": 42,
+          "tp": 415
+        },
+        "test_recall_ci": [
+          0.8814317673378076,
+          0.9317205646776131
+        ],
+        "test_precision_ci": [
+          0.14984052264731018,
+          0.17774220949705102
+        ]
+      },
+      "calibration_test": {
+        "brier": 0.0665036216378212,
+        "ece": 0.009813674202627751,
+        "intercept": 0.07040327042341232,
+        "slope": 1.0069465637207031,
+        "mean_predicted": 0.07888933271169662,
+        "observed_rate": 0.08258041199855438
+      },
+      "calibration_table_test": [
+        {
+          "n": 554,
+          "mean_predicted": 0.0036704454105347395,
+          "observed_rate": 0.005415162454873646
+        },
+        {
+          "n": 554,
+          "mean_predicted": 0.006463408470153809,
+          "observed_rate": 0.0036101083032490976
+        },
+        {
+          "n": 554,
+          "mean_predicted": 0.01079906802624464,
+          "observed_rate": 0.009025270758122744
+        },
+        {
+          "n": 554,
+          "mean_predicted": 0.019722240045666695,
+          "observed_rate": 0.016245487364620937
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.03210795670747757,
+          "observed_rate": 0.027124773960216998
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.04967799410223961,
+          "observed_rate": 0.0433996383363472
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.07393991202116013,
+          "observed_rate": 0.0867992766726944
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.10943423956632614,
+          "observed_rate": 0.11754068716094032
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.16852262616157532,
+          "observed_rate": 0.21338155515370705
+        },
+        {
+          "n": 553,
+          "mean_predicted": 0.3150525391101837,
+          "observed_rate": 0.3037974683544304
+        }
+      ],
+      "grid": [
+        {
+          "max_depth": 1,
+          "min_child_weight": 1,
+          "n_estimators": 311,
+          "valid_pr_auc": 0.29659253460541724
+        },
+        {
+          "max_depth": 1,
+          "min_child_weight": 5,
+          "n_estimators": 311,
+          "valid_pr_auc": 0.29621790628105177
+        },
+        {
+          "max_depth": 2,
+          "min_child_weight": 1,
+          "n_estimators": 151,
+          "valid_pr_auc": 0.2995946068723471
+        },
+        {
+          "max_depth": 2,
+          "min_child_weight": 5,
+          "n_estimators": 150,
+          "valid_pr_auc": 0.297791300827741
+        },
+        {
+          "max_depth": 3,
+          "min_child_weight": 1,
+          "n_estimators": 79,
+          "valid_pr_auc": 0.2929561959816666
+        },
+        {
+          "max_depth": 3,
+          "min_child_weight": 5,
+          "n_estimators": 70,
+          "valid_pr_auc": 0.2899917667075662
+        },
+        {
+          "max_depth": 4,
+          "min_child_weight": 1,
+          "n_estimators": 79,
+          "valid_pr_auc": 0.296990078438859
+        },
+        {
+          "max_depth": 4,
+          "min_child_weight": 5,
+          "n_estimators": 79,
+          "valid_pr_auc": 0.2973484026490228
+        }
+      ]
+    }
+  },
+  "paired_differences_test": {
+    "xgboost_minus_logistic_regression": {
+      "roc_auc": [
+        0.0010070300307432056,
+        -0.0038076798686127954,
+        0.006093780486695868
+      ],
+      "pr_auc": [
+        0.0014714662042320525,
+        -0.014462644340965747,
+        0.015533881018831339
+      ]
+    },
+    "random_forest_minus_logistic_regression": {
+      "roc_auc": [
+        0.00015903876796252714,
+        -0.0068297358651892735,
+        0.0069180196286918695
+      ],
+      "pr_auc": [
+        0.008434065855139061,
+        -0.014121688999707846,
+        0.027931487951303107
+      ]
+    },
+    "logistic_regression_minus_age_sex_baseline": {
+      "roc_auc": [
+        0.0333190528875017,
+        0.02199731220530584,
+        0.044150235283332784
+      ],
+      "pr_auc": [
+        0.049075233792424316,
+        0.02598735451656352,
+        0.07924218907596298
+      ]
+    },
+    "xgboost_minus_age_sex_baseline": {
+      "roc_auc": [
+        0.034326082918244905,
+        0.022620922263155957,
+        0.04531156016515567
+      ],
+      "pr_auc": [
+        0.05054669999665637,
+        0.026740076364437353,
+        0.0791628951948848
+      ]
+    }
+  },
+  "threshold_tradeoff_selected": [
+    {
+      "target_recall": 0.8,
+      "threshold": 0.075473992228818,
+      "valid": {
+        "threshold": 0.075473992228818,
+        "accuracy": 0.7549226441631505,
+        "precision": 0.2076271186440678,
+        "recall": 0.8014018691588785,
+        "f1": 0.3298076923076923,
+        "specificity": 0.7511406844106464,
+        "false_positive_rate": 0.24885931558935362,
+        "flagged_share": 0.29043600562587907,
+        "false_alarms_per_case_found": 3.816326530612245,
+        "people_flagged_per_case_found": 4.816326530612245,
+        "tn": 3951,
+        "fp": 1309,
+        "fn": 85,
+        "tp": 343
+      },
+      "test": {
+        "threshold": 0.075473992228818,
+        "accuracy": 0.7157571376942538,
+        "precision": 0.20064377682403434,
+        "recall": 0.8183807439824945,
+        "f1": 0.3222748815165877,
+        "specificity": 0.7065195981879062,
+        "false_positive_rate": 0.2934804018120938,
+        "flagged_share": 0.33682688832670765,
+        "false_alarms_per_case_found": 3.983957219251337,
+        "people_flagged_per_case_found": 4.983957219251337,
+        "tn": 3587,
+        "fp": 1490,
+        "fn": 83,
+        "tp": 374
+      }
+    },
+    {
+      "target_recall": 0.85,
+      "threshold": 0.060280612988756824,
+      "valid": {
+        "threshold": 0.060280612988756824,
+        "accuracy": 0.7204641350210971,
+        "precision": 0.1925925925925926,
+        "recall": 0.8504672897196262,
+        "f1": 0.31406384814495253,
+        "specificity": 0.7098859315589353,
+        "false_positive_rate": 0.29011406844106463,
+        "flagged_share": 0.3322784810126582,
+        "false_alarms_per_case_found": 4.1923076923076925,
+        "people_flagged_per_case_found": 5.1923076923076925,
+        "tn": 3734,
+        "fp": 1526,
+        "fn": 64,
+        "tp": 364
+      },
+      "test": {
+        "threshold": 0.060280612988756824,
+        "accuracy": 0.6792555113841706,
+        "precision": 0.18797348484848486,
+        "recall": 0.8687089715536105,
+        "f1": 0.30906967691708837,
+        "specificity": 0.6622020878471538,
+        "false_positive_rate": 0.33779791215284616,
+        "flagged_share": 0.3816407661727503,
+        "false_alarms_per_case_found": 4.319899244332493,
+        "people_flagged_per_case_found": 5.319899244332493,
+        "tn": 3362,
+        "fp": 1715,
+        "fn": 60,
+        "tp": 397
+      }
+    },
+    {
+      "target_recall": 0.9,
+      "threshold": 0.039107672042238875,
+      "valid": {
+        "threshold": 0.039107672042238875,
+        "accuracy": 0.6424050632911392,
+        "precision": 0.16232127838519764,
+        "recall": 0.9018691588785047,
+        "f1": 0.2751247327156094,
+        "specificity": 0.6212927756653992,
+        "false_positive_rate": 0.37870722433460074,
+        "flagged_share": 0.4180731364275668,
+        "false_alarms_per_case_found": 5.160621761658031,
+        "people_flagged_per_case_found": 6.160621761658031,
+        "tn": 3268,
+        "fp": 1992,
+        "fn": 42,
+        "tp": 386
+      },
+      "test": {
+        "threshold": 0.039107672042238875,
+        "accuracy": 0.5957715937838814,
+        "precision": 0.1595256312165264,
+        "recall": 0.912472647702407,
+        "f1": 0.271572777596874,
+        "specificity": 0.5672641323616309,
+        "false_positive_rate": 0.43273586763836913,
+        "flagged_share": 0.47235272858691724,
+        "false_alarms_per_case_found": 5.2685851318944845,
+        "people_flagged_per_case_found": 6.2685851318944845,
+        "tn": 2880,
+        "fp": 2197,
+        "fn": 40,
+        "tp": 417
+      }
+    },
+    {
+      "target_recall": 0.95,
+      "threshold": 0.02383962377845502,
+      "valid": {
+        "threshold": 0.02383962377845502,
+        "accuracy": 0.5399085794655415,
+        "precision": 0.13553113553113552,
+        "recall": 0.9509345794392523,
+        "f1": 0.23724861556397553,
+        "specificity": 0.5064638783269962,
+        "false_positive_rate": 0.4935361216730038,
+        "flagged_share": 0.5279535864978903,
+        "false_alarms_per_case_found": 6.378378378378378,
+        "people_flagged_per_case_found": 7.378378378378378,
+        "tn": 2664,
+        "fp": 2596,
+        "fn": 21,
+        "tp": 407
+      },
+      "test": {
+        "threshold": 0.02383962377845502,
+        "accuracy": 0.49277195518612216,
+        "precision": 0.13531967721911856,
+        "recall": 0.9540481400437637,
+        "f1": 0.2370209296004349,
+        "specificity": 0.45125073862517234,
+        "false_positive_rate": 0.5487492613748276,
+        "flagged_share": 0.5822190097578605,
+        "false_alarms_per_case_found": 6.389908256880734,
+        "people_flagged_per_case_found": 7.389908256880734,
+        "tn": 2291,
+        "fp": 2786,
+        "fn": 21,
+        "tp": 436
+      }
+    }
+  ],
+  "recalibration_selected": {
+    "raw": {
+      "brier": 0.06649308960938562,
+      "ece": 0.011405195790876286,
+      "intercept": -0.04476559086525308,
+      "slope": 0.9594747522926859,
+      "mean_predicted": 0.08070819198245288,
+      "observed_rate": 0.08258041199855438
+    },
+    "platt_on_valid": {
+      "brier": 0.06655579734925056,
+      "ece": 0.011208587766420572,
+      "intercept": -0.11935525293028139,
+      "slope": 0.9556140457513169,
+      "mean_predicted": 0.08530134975597173,
+      "observed_rate": 0.08258041199855438
+    }
+  },
+  "subgroups_selected": {
+    "sex": [
+      {
+        "group": "female",
+        "n": 2854,
+        "positives": 159,
+        "prevalence": 0.055711282410651715,
+        "roc_auc": 0.8105237978553343,
+        "roc_auc_lo": 0.7779887026133152,
+        "roc_auc_hi": 0.8428062182217309,
+        "recall": 0.8616352201257862,
+        "precision": 0.11541701769165964,
+        "flagged_share": 0.4159074982480729,
+        "false_alarms_per_case_found": 7.664233576642336
+      },
+      {
+        "group": "male",
+        "n": 2680,
+        "positives": 298,
+        "prevalence": 0.11119402985074626,
+        "roc_auc": 0.8247679745744088,
+        "roc_auc_lo": 0.8026910742569375,
+        "roc_auc_hi": 0.8465938799479197,
+        "recall": 0.9395973154362416,
+        "precision": 0.19621583742116327,
+        "flagged_share": 0.5324626865671642,
+        "false_alarms_per_case_found": 4.0964285714285715
+      }
+    ],
+    "age_band": [
+      {
+        "group": "20-39",
+        "n": 1684,
+        "positives": 17,
+        "prevalence": 0.010095011876484561,
+        "roc_auc": 0.7171742122163801,
+        "roc_auc_lo": 0.5662315741725918,
+        "roc_auc_hi": 0.8576813625492655,
+        "recall": 0.17647058823529413,
+        "precision": 0.17647058823529413,
+        "flagged_share": 0.010095011876484561,
+        "false_alarms_per_case_found": 4.666666666666667
+      },
+      {
+        "group": "40-59",
+        "n": 1723,
+        "positives": 76,
+        "prevalence": 0.04410911201392919,
+        "roc_auc": 0.7420908829450676,
+        "roc_auc_lo": 0.6859224965204015,
+        "roc_auc_hi": 0.7962490077969778,
+        "recall": 0.7105263157894737,
+        "precision": 0.09015025041736227,
+        "flagged_share": 0.3476494486360998,
+        "false_alarms_per_case_found": 10.092592592592593
+      },
+      {
+        "group": "60+",
+        "n": 2127,
+        "positives": 364,
+        "prevalence": 0.17113305124588624,
+        "roc_auc": 0.7006671009081673,
+        "roc_auc_lo": 0.673029411219338,
+        "roc_auc_hi": 0.7268714644197658,
+        "recall": 0.989010989010989,
+        "precision": 0.18018018018018017,
+        "flagged_share": 0.9393511988716502,
+        "false_alarms_per_case_found": 4.55
+      }
+    ],
+    "race_ethnicity": [
+      {
+        "group": "Mexican American",
+        "n": 729,
+        "positives": 39,
+        "prevalence": 0.053497942386831275,
+        "roc_auc": 0.8356373095503531,
+        "roc_auc_lo": 0.7705247515230907,
+        "roc_auc_hi": 0.8895329322610033,
+        "recall": 0.9230769230769231,
+        "precision": 0.12371134020618557,
+        "flagged_share": 0.3991769547325103,
+        "false_alarms_per_case_found": 7.083333333333333
+      },
+      {
+        "group": "Non-Hispanic Asian",
+        "n": 805,
+        "positives": 32,
+        "prevalence": 0.03975155279503106,
+        "roc_auc": 0.9057244501940492,
+        "roc_auc_lo": 0.8728103856425744,
+        "roc_auc_hi": 0.9348068020189707,
+        "recall": 0.96875,
+        "precision": 0.11439114391143912,
+        "flagged_share": 0.33664596273291925,
+        "false_alarms_per_case_found": 7.741935483870968
+      },
+      {
+        "group": "Non-Hispanic Black",
+        "n": 1291,
+        "positives": 76,
+        "prevalence": 0.05886909372579396,
+        "roc_auc": 0.791737058696123,
+        "roc_auc_lo": 0.7397131883338781,
+        "roc_auc_hi": 0.8444207782824112,
+        "recall": 0.8947368421052632,
+        "precision": 0.10461538461538461,
+        "flagged_share": 0.5034856700232379,
+        "false_alarms_per_case_found": 8.558823529411764
+      },
+      {
+        "group": "Non-Hispanic White",
+        "n": 1925,
+        "positives": 246,
+        "prevalence": 0.1277922077922078,
+        "roc_auc": 0.8046831495712218,
+        "roc_auc_lo": 0.7776635640543147,
+        "roc_auc_hi": 0.8293229914226198,
+        "recall": 0.9227642276422764,
+        "precision": 0.21155638397017706,
+        "flagged_share": 0.5574025974025975,
+        "false_alarms_per_case_found": 3.7268722466960353
+      },
+      {
+        "group": "Other Hispanic",
+        "n": 516,
+        "positives": 36,
+        "prevalence": 0.06976744186046512,
+        "roc_auc": 0.8223958333333333,
+        "roc_auc_lo": 0.756991422752175,
+        "roc_auc_hi": 0.8763571826810064,
+        "recall": 0.8611111111111112,
+        "precision": 0.13901345291479822,
+        "flagged_share": 0.4321705426356589,
+        "false_alarms_per_case_found": 6.193548387096774
+      },
+      {
+        "group": "Other or multiracial",
+        "n": 268,
+        "positives": 28,
+        "prevalence": 0.1044776119402985,
+        "roc_auc": 0.8266369047619048,
+        "roc_auc_lo": 0.7522249201214831,
+        "roc_auc_hi": 0.8965279213689766,
+        "recall": 0.8571428571428571,
+        "precision": 0.22641509433962265,
+        "flagged_share": 0.39552238805970147,
+        "false_alarms_per_case_found": 3.4166666666666665
+      }
+    ]
+  },
+  "weighted_sensitivity": {
+    "n_examined_test": 5230,
+    "selected_unweighted_roc_auc": 0.831344657496179,
+    "selected_weighted_roc_auc": 0.8557160475116241,
+    "selected_unweighted_pr_auc": 0.2816340247280324,
+    "selected_weighted_pr_auc": 0.28577619924762765,
+    "weighted_prevalence": 0.06767865630501177,
+    "unweighted_prevalence": 0.08260038240917782,
+    "lr_unweighted_training_weighted_auc": 0.8550443316954285,
+    "lr_weighted_training_weighted_auc": 0.8569744030449603,
+    "lr_unweighted_training_unweighted_auc": 0.8311241759683818,
+    "lr_weighted_training_unweighted_auc": 0.8320963209979467
+  },
+  "missing_value_strategies": {
+    "rows": [
+      {
+        "model": "logistic_regression",
+        "strategy": "median_indicator",
+        "roc_auc": 0.8285279776776805,
+        "roc_auc_lo": 0.8113735622637154,
+        "roc_auc_hi": 0.8451811659529712,
+        "pr_auc": 0.2756952574104912,
+        "pr_auc_lo": 0.24296731939733987,
+        "pr_auc_hi": 0.3151507362895118,
+        "params": {
+          "C": 0.3
+        }
+      },
+      {
+        "model": "logistic_regression",
+        "strategy": "median",
+        "roc_auc": 0.828528839676423,
+        "roc_auc_lo": 0.8117510382128922,
+        "roc_auc_hi": 0.8453617042638426,
+        "pr_auc": 0.2763341749196496,
+        "pr_auc_lo": 0.24402248667314924,
+        "pr_auc_hi": 0.3148902032410367,
+        "params": {
+          "C": 0.3
+        }
+      },
+      {
+        "model": "logistic_regression",
+        "strategy": "iterative",
+        "roc_auc": 0.8297352069163331,
+        "roc_auc_lo": 0.812815595754602,
+        "roc_auc_hi": 0.8460435912652207,
+        "pr_auc": 0.2793056296626141,
+        "pr_auc_lo": 0.2459031384760947,
+        "pr_auc_hi": 0.31825847859253964,
+        "params": {
+          "C": 0.3
+        }
+      },
+      {
+        "model": "xgboost",
+        "strategy": "median_indicator",
+        "roc_auc": 0.8295350077084237,
+        "roc_auc_lo": 0.8122876095528423,
+        "roc_auc_hi": 0.8462990987438702,
+        "pr_auc": 0.2771667236147233,
+        "pr_auc_lo": 0.24279644313159193,
+        "pr_auc_hi": 0.31511970010064283,
+        "params": {
+          "max_depth": 2,
+          "min_child_weight": 1,
+          "n_estimators": 151
+        }
+      },
+      {
+        "model": "xgboost",
+        "strategy": "median",
+        "roc_auc": 0.8313697720315025,
+        "roc_auc_lo": 0.8143550941685588,
+        "roc_auc_hi": 0.8477664315766482,
+        "pr_auc": 0.28386875643566795,
+        "pr_auc_lo": 0.24869636559278652,
+        "pr_auc_hi": 0.3222093842237458,
+        "params": {
+          "max_depth": 2,
+          "min_child_weight": 1,
+          "n_estimators": 151
+        }
+      },
+      {
+        "model": "xgboost",
+        "strategy": "iterative",
+        "roc_auc": 0.8286872319453287,
+        "roc_auc_lo": 0.8116127836421179,
+        "roc_auc_hi": 0.8450008602652926,
+        "pr_auc": 0.2806273113452608,
+        "pr_auc_lo": 0.24517723637267547,
+        "pr_auc_hi": 0.31957738959485554,
+        "params": {
+          "max_depth": 2,
+          "min_child_weight": 1,
+          "n_estimators": 151
+        }
+      },
+      {
+        "model": "xgboost",
+        "strategy": "native",
+        "roc_auc": 0.8315018733387669,
+        "roc_auc_lo": 0.8144676573078015,
+        "roc_auc_hi": 0.8479969864527073,
+        "pr_auc": 0.2814851010694788,
+        "pr_auc_lo": 0.2476489831572055,
+        "pr_auc_hi": 0.3185526565769391,
+        "params": {
+          "max_depth": 2,
+          "min_child_weight": 1,
+          "n_estimators": 151
+        }
+      }
+    ],
+    "complete_case": {
+      "n_train_complete": 3628,
+      "n_train_total": 11290,
+      "n_test_complete": 1874,
+      "n_test_total": 5534,
+      "positives_test_complete": 166,
+      "complete_case_model_roc_auc": 0.8120891058378713,
+      "complete_case_model_pr_auc": 0.27003250842744864,
+      "median_indicator_model_roc_auc_same_rows": 0.8161063457577382,
+      "median_indicator_model_pr_auc_same_rows": 0.27377595935671806
+    }
+  },
+  "odds_ratios_logistic": [
+    {
+      "feature": "age_years",
+      "coefficient": 1.2102210585821653,
+      "odds_ratio": 3.3542260510548614
+    },
+    {
+      "feature": "smoking_status_current",
+      "coefficient": 0.5408038894994579,
+      "odds_ratio": 1.7173868967056773
+    },
+    {
+      "feature": "ever_heavy_drinker_yes",
+      "coefficient": 0.3767399874223732,
+      "odds_ratio": 1.4575252851914755
+    },
+    {
+      "feature": "total_chol",
+      "coefficient": -0.3177627273825698,
+      "odds_ratio": 0.7277754491156703
+    },
+    {
+      "feature": "diabetes_no",
+      "coefficient": -0.2720890604877109,
+      "odds_ratio": 0.7617864129991171
+    },
+    {
+      "feature": "smoking_status_never",
+      "coefficient": -0.22530666791017862,
+      "odds_ratio": 0.7982713770038
+    },
+    {
+      "feature": "diabetes_yes",
+      "coefficient": 0.22291799538098406,
+      "odds_ratio": 1.2497180868782518
+    },
+    {
+      "feature": "diabetes_borderline",
+      "coefficient": 0.13506853085807444,
+      "odds_ratio": 1.1446152231269515
+    },
+    {
+      "feature": "drinks_per_day",
+      "coefficient": -0.13236097188863288,
+      "odds_ratio": 0.8760247177023484
+    },
+    {
+      "feature": "hdl",
+      "coefficient": -0.11380291410123108,
+      "odds_ratio": 0.8924338246736373
+    },
+    {
+      "feature": "hba1c",
+      "coefficient": 0.1119958085693972,
+      "odds_ratio": 1.1185081724858366
+    },
+    {
+      "feature": "smoking_status_former",
+      "coefficient": -0.10823980747956882,
+      "odds_ratio": 0.897412364427097
+    },
+    {
+      "feature": "sex_male",
+      "coefficient": 0.09733934234220151,
+      "odds_ratio": 1.1022343449495389
+    },
+    {
+      "feature": "bmi",
+      "coefficient": 0.0930381541568155,
+      "odds_ratio": 1.097503608794048
+    },
+    {
+      "feature": "sex_female",
+      "coefficient": -0.09276241005740853,
+      "odds_ratio": 0.9114100164275748
+    },
+    {
+      "feature": "waist_cm",
+      "coefficient": 0.07153090604595926,
+      "odds_ratio": 1.0741513479592404
+    },
+    {
+      "feature": "dbp_mean",
+      "coefficient": -0.05492418249511446,
+      "odds_ratio": 0.9465569108162192
+    },
+    {
+      "feature": "sbp_mean",
+      "coefficient": 0.020959716004482213,
+      "odds_ratio": 1.0211809135615864
+    },
+    {
+      "feature": "ever_heavy_drinker_no",
+      "coefficient": 0.020935614356897992,
+      "odds_ratio": 1.0211563017156822
+    },
+    {
+      "feature": "fasting_glucose",
+      "coefficient": 0.006832367528629645,
+      "odds_ratio": 1.0068557613998128
+    }
+  ],
+  "importance": {
+    "permutation_selected": [
+      {
+        "feature": "age_years",
+        "auc_drop_mean": 0.22205284784989493,
+        "auc_drop_std": 0.010805355843643229
+      },
+      {
+        "feature": "total_chol",
+        "auc_drop_mean": 0.016180018093353548,
+        "auc_drop_std": 0.0031213049562207077
+      },
+      {
+        "feature": "smoking_status",
+        "auc_drop_mean": 0.009381175412864979,
+        "auc_drop_std": 0.0021654679638351453
+      },
+      {
+        "feature": "ever_heavy_drinker",
+        "auc_drop_mean": 0.008635417200926209,
+        "auc_drop_std": 0.0015978717914060892
+      },
+      {
+        "feature": "diabetes",
+        "auc_drop_mean": 0.006881734634549086,
+        "auc_drop_std": 0.0015849465742922642
+      },
+      {
+        "feature": "sex",
+        "auc_drop_mean": 0.0032315901851098284,
+        "auc_drop_std": 0.0007636207765332908
+      },
+      {
+        "feature": "hba1c",
+        "auc_drop_mean": 0.0022462070977837755,
+        "auc_drop_std": 0.0009898327323477603
+      },
+      {
+        "feature": "hdl",
+        "auc_drop_mean": 0.0019418999917678315,
+        "auc_drop_std": 0.0011374683759148344
+      },
+      {
+        "feature": "dbp_mean",
+        "auc_drop_mean": 0.0017080397329699792,
+        "auc_drop_std": 0.0006894412047150987
+      },
+      {
+        "feature": "waist_cm",
+        "auc_drop_mean": 0.001516697562138175,
+        "auc_drop_std": 0.000604034387988017
+      },
+      {
+        "feature": "bmi",
+        "auc_drop_mean": 0.0010926265058578799,
+        "auc_drop_std": 0.00074884447607616
+      },
+      {
+        "feature": "drinks_per_day",
+        "auc_drop_mean": 0.0008179182816571761,
+        "auc_drop_std": 0.0013022213129658738
+      },
+      {
+        "feature": "sbp_mean",
+        "auc_drop_mean": 0.0005698673685634315,
+        "auc_drop_std": 0.00043176974809582957
+      },
+      {
+        "feature": "fasting_glucose",
+        "auc_drop_mean": 0.0001083209169596866,
+        "auc_drop_std": 8.289442051912585e-05
+      }
+    ],
+    "permutation_xgboost": [
+      {
+        "feature": "age_years",
+        "auc_drop_mean": 0.2266906920082803,
+        "auc_drop_std": 0.010679277701917109
+      },
+      {
+        "feature": "total_chol",
+        "auc_drop_mean": 0.02074495870810521,
+        "auc_drop_std": 0.0036450354896252
+      },
+      {
+        "feature": "diabetes",
+        "auc_drop_mean": 0.0077691946647449215,
+        "auc_drop_std": 0.0019042471850100023
+      },
+      {
+        "feature": "smoking_status",
+        "auc_drop_mean": 0.006776710862778784,
+        "auc_drop_std": 0.001649597355420272
+      },
+      {
+        "feature": "hdl",
+        "auc_drop_mean": 0.004117218467978195,
+        "auc_drop_std": 0.001484196595357517
+      },
+      {
+        "feature": "ever_heavy_drinker",
+        "auc_drop_mean": 0.002748084315544919,
+        "auc_drop_std": 0.0008534443907571068
+      },
+      {
+        "feature": "waist_cm",
+        "auc_drop_mean": 0.0019635146102321257,
+        "auc_drop_std": 0.0007956336718051176
+      },
+      {
+        "feature": "sex",
+        "auc_drop_mean": 0.0006875409718776426,
+        "auc_drop_std": 0.00022990179203214367
+      },
+      {
+        "feature": "sbp_mean",
+        "auc_drop_mean": 0.0005025775917392339,
+        "auc_drop_std": 0.0004792452311369766
+      },
+      {
+        "feature": "fasting_glucose",
+        "auc_drop_mean": 0.0003062142782332911,
+        "auc_drop_std": 0.00037376956836786046
+      },
+      {
+        "feature": "dbp_mean",
+        "auc_drop_mean": 0.0002986286893006618,
+        "auc_drop_std": 0.00033535427163887616
+      },
+      {
+        "feature": "drinks_per_day",
+        "auc_drop_mean": 0.00014338271580451866,
+        "auc_drop_std": 0.00043976965067034184
+      },
+      {
+        "feature": "hba1c",
+        "auc_drop_mean": -0.0002537077798404175,
+        "auc_drop_std": 0.0008545165914016489
+      },
+      {
+        "feature": "bmi",
+        "auc_drop_mean": -0.0003336581631928293,
+        "auc_drop_std": 0.00022499226174329647
+      }
+    ],
+    "shap_xgboost_mean_abs": [
+      {
+        "feature": "age_years",
+        "mean_abs_shap": 1.0762319564819336
+      },
+      {
+        "feature": "total_chol",
+        "mean_abs_shap": 0.19648870825767517
+      },
+      {
+        "feature": "smoking_status_current",
+        "mean_abs_shap": 0.13279050588607788
+      },
+      {
+        "feature": "hdl",
+        "mean_abs_shap": 0.12785734236240387
+      },
+      {
+        "feature": "diabetes_no",
+        "mean_abs_shap": 0.11899850517511368
+      },
+      {
+        "feature": "hba1c",
+        "mean_abs_shap": 0.10281966626644135
+      },
+      {
+        "feature": "ever_heavy_drinker_yes",
+        "mean_abs_shap": 0.06922480463981628
+      },
+      {
+        "feature": "waist_cm",
+        "mean_abs_shap": 0.06734400987625122
+      },
+      {
+        "feature": "smoking_status_never",
+        "mean_abs_shap": 0.06518618017435074
+      },
+      {
+        "feature": "diabetes_yes",
+        "mean_abs_shap": 0.04914021119475365
+      },
+      {
+        "feature": "sbp_mean",
+        "mean_abs_shap": 0.044655296951532364
+      },
+      {
+        "feature": "drinks_per_day",
+        "mean_abs_shap": 0.04105544090270996
+      },
+      {
+        "feature": "dbp_mean",
+        "mean_abs_shap": 0.03792092949151993
+      },
+      {
+        "feature": "fasting_glucose",
+        "mean_abs_shap": 0.02699626423418522
+      },
+      {
+        "feature": "sex_female",
+        "mean_abs_shap": 0.01536960806697607
+      },
+      {
+        "feature": "bmi",
+        "mean_abs_shap": 0.014905275776982307
+      },
+      {
+        "feature": "waist_cm_missing",
+        "mean_abs_shap": 0.0113369757309556
+      },
+      {
+        "feature": "sex_male",
+        "mean_abs_shap": 0.006455746479332447
+      },
+      {
+        "feature": "sbp_mean_missing",
+        "mean_abs_shap": 0.0031104939989745617
+      },
+      {
+        "feature": "total_chol_missing",
+        "mean_abs_shap": 0.0024259197525680065
+      },
+      {
+        "feature": "ever_heavy_drinker_missing",
+        "mean_abs_shap": 0.0016189392190426588
+      },
+      {
+        "feature": "fasting_glucose_missing",
+        "mean_abs_shap": 0.001537711126729846
+      },
+      {
+        "feature": "dbp_mean_missing",
+        "mean_abs_shap": 0.0013862878549844027
+      },
+      {
+        "feature": "bmi_missing",
+        "mean_abs_shap": 0.0
+      },
+      {
+        "feature": "hdl_missing",
+        "mean_abs_shap": 0.0
+      },
+      {
+        "feature": "smoking_status_former",
+        "mean_abs_shap": 0.0
+      },
+      {
+        "feature": "hba1c_missing",
+        "mean_abs_shap": 0.0
+      },
+      {
+        "feature": "drinks_per_day_missing",
+        "mean_abs_shap": 0.0
+      },
+      {
+        "feature": "smoking_status_missing",
+        "mean_abs_shap": 0.0
+      },
+      {
+        "feature": "diabetes_borderline",
+        "mean_abs_shap": 0.0
+      },
+      {
+        "feature": "diabetes_missing",
+        "mean_abs_shap": 0.0
+      },
+      {
+        "feature": "ever_heavy_drinker_no",
+        "mean_abs_shap": 0.0
+      }
+    ]
+  },
+  "validation": [
+    {
+      "name": "raw_row_counts_match_files",
+      "passed": true,
+      "detail": "all raw tables match their files"
+    },
+    {
+      "name": "raw_demo_no_duplicate_seqn",
+      "passed": true,
+      "detail": "0 duplicated (cycle, seqn) pairs"
+    },
+    {
+      "name": "model_nonempty",
+      "passed": true,
+      "detail": "22512 rows"
+    },
+    {
+      "name": "model_unique_seqn",
+      "passed": true,
+      "detail": "0 duplicated seqn values"
+    },
+    {
+      "name": "adults_per_cycle_minimum",
+      "passed": true,
+      "detail": "every cycle has at least 4000 labelled adults (min 5534)"
+    },
+    {
+      "name": "funnel_reconciles",
+      "passed": true,
+      "detail": "funnel labelled adults 22512 vs model rows 22512"
+    },
+    {
+      "name": "core_columns_complete",
+      "passed": true,
+      "detail": "missing share: none"
+    },
+    {
+      "name": "range_age_years",
+      "passed": true,
+      "detail": "0 values outside [20, 80] (observed 20 to 80)"
+    },
+    {
+      "name": "range_bmi",
+      "passed": true,
+      "detail": "0 values outside [10, 90] (observed 13.4 to 86.2)"
+    },
+    {
+      "name": "range_waist_cm",
+      "passed": true,
+      "detail": "0 values outside [40, 200] (observed 55.5 to 177.9)"
+    },
+    {
+      "name": "range_sbp_mean",
+      "passed": true,
+      "detail": "0 values outside [50, 280] (observed 64.67 to 238)"
+    },
+    {
+      "name": "range_dbp_mean",
+      "passed": true,
+      "detail": "0 values outside [0, 160] (observed 3.333 to 138.7)"
+    },
+    {
+      "name": "range_total_chol",
+      "passed": true,
+      "detail": "0 values outside [40, 900] (observed 59 to 813)"
+    },
+    {
+      "name": "range_hdl",
+      "passed": true,
+      "detail": "0 values outside [5, 250] (observed 6 to 226)"
+    },
+    {
+      "name": "range_hba1c",
+      "passed": true,
+      "detail": "0 values outside [2.5, 20] (observed 3.5 to 17.8)"
+    },
+    {
+      "name": "range_fasting_glucose",
+      "passed": true,
+      "detail": "0 values outside [20, 800] (observed 21 to 479)"
+    },
+    {
+      "name": "range_drinks_per_day",
+      "passed": true,
+      "detail": "0 values outside [0, 100] (observed 0 to 82)"
+    },
+    {
+      "name": "systolic_above_diastolic",
+      "passed": true,
+      "detail": "0 rows with systolic <= diastolic"
+    },
+    {
+      "name": "categories_sex",
+      "passed": true,
+      "detail": "ok"
+    },
+    {
+      "name": "categories_split",
+      "passed": true,
+      "detail": "ok"
+    },
+    {
+      "name": "categories_age_band",
+      "passed": true,
+      "detail": "ok"
+    },
+    {
+      "name": "categories_smoking_status",
+      "passed": true,
+      "detail": "ok"
+    },
+    {
+      "name": "categories_diabetes",
+      "passed": true,
+      "detail": "ok"
+    },
+    {
+      "name": "categories_ever_heavy_drinker",
+      "passed": true,
+      "detail": "ok"
+    },
+    {
+      "name": "no_special_codes_in_drinks",
+      "passed": true,
+      "detail": "0 rows carry 77/99/777/999 as drinks"
+    },
+    {
+      "name": "missingness_bmi",
+      "passed": true,
+      "detail": "worst cycle J: 7.1% missing (limit 25%)"
+    },
+    {
+      "name": "missingness_waist_cm",
+      "passed": true,
+      "detail": "worst cycle J: 11.4% missing (limit 25%)"
+    },
+    {
+      "name": "missingness_sbp_mean",
+      "passed": true,
+      "detail": "worst cycle J: 10.2% missing (limit 25%)"
+    },
+    {
+      "name": "missingness_dbp_mean",
+      "passed": true,
+      "detail": "worst cycle J: 10.4% missing (limit 25%)"
+    },
+    {
+      "name": "missingness_total_chol",
+      "passed": true,
+      "detail": "worst cycle G: 11.6% missing (limit 25%)"
+    },
+    {
+      "name": "missingness_hdl",
+      "passed": true,
+      "detail": "worst cycle G: 11.6% missing (limit 25%)"
+    },
+    {
+      "name": "missingness_hba1c",
+      "passed": true,
+      "detail": "worst cycle J: 9.9% missing (limit 25%)"
+    },
+    {
+      "name": "missingness_fasting_glucose",
+      "passed": true,
+      "detail": "worst cycle I: 57.1% missing (limit 75%)"
+    },
+    {
+      "name": "missingness_smoking_status",
+      "passed": true,
+      "detail": "worst cycle I: 0.2% missing (limit 5%)"
+    },
+    {
+      "name": "missingness_diabetes",
+      "passed": true,
+      "detail": "worst cycle J: 0.1% missing (limit 5%)"
+    },
+    {
+      "name": "missingness_drinks_per_day",
+      "passed": true,
+      "detail": "worst cycle I: 28.6% missing (limit 40%)"
+    },
+    {
+      "name": "label_binary",
+      "passed": true,
+      "detail": "values [0, 1]"
+    },
+    {
+      "name": "label_matches_components",
+      "passed": true,
+      "detail": "0 rows disagree with CHD/angina/MI"
+    },
+    {
+      "name": "prevalence_plausible",
+      "passed": true,
+      "detail": "per-cycle prevalence G 6.4%, H 6.9%, I 7.5%, J 8.3%"
+    },
+    {
+      "name": "temporal_split_order",
+      "passed": true,
+      "detail": "train < valid < test by survey cycle"
+    },
+    {
+      "name": "positives_per_split",
+      "passed": true,
+      "detail": "positives {'test': 457, 'train': 752, 'valid': 428} (minimum 200)"
+    },
+    {
+      "name": "exam_weights_positive",
+      "passed": true,
+      "detail": "0 examined people with weight <= 0"
+    }
+  ]
+}

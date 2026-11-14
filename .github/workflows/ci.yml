@@ -1,0 +1,48 @@
+name: CI
+on:
+  push:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        python-version: ["3.12", "3.13"]
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: nhanes
+          POSTGRES_PASSWORD: nhanes_ci
+          POSTGRES_DB: nhanes_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U nhanes -d nhanes_ci"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      # CI never touches the real CDC data: everything below uses the synthetic fixture.
+      NHANES_DB_URL: postgresql+psycopg://nhanes:nhanes_ci@127.0.0.1:5432/nhanes_ci
+      NHANES_FIXTURE_DB_URL: postgresql+psycopg://nhanes:nhanes_ci@127.0.0.1:5432/nhanes_ci
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[serve,dev,notebooks]"
+      - run: ruff check .
+      - run: ruff format --check .
+      - name: Tests (unit, SQL transform, validation, pipeline, Streamlit app)
+        run: pytest
+      - name: Whole pipeline on the synthetic fixture (load, SQL, validate, train, report)
+        run: nhanes run-all --fixture --out /tmp/nhanes_out --quick --n-boot 100
+      - name: Notebooks run end to end on the synthetic fixture (a check line that says DIFFERS fails)
+        run: nhanes run-notebooks --fixture --out /tmp/nhanes_out

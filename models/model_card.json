@@ -1,0 +1,128 @@
+{
+  "model": "logistic_regression",
+  "disclaimer": "Educational demo, not medical advice. Trained on self-reported survey answers from the U.S. NHANES survey. It does not diagnose anything.",
+  "threshold": 0.039107672042238875,
+  "target_recall": 0.9,
+  "valid_recall_at_threshold": 0.9018691588785047,
+  "test_recall_at_threshold": 0.912472647702407,
+  "test_share_flagged": 0.47235272858691724,
+  "test_false_alarms_per_case_found": 5.2685851318944845,
+  "test_roc_auc": 0.8285279776776805,
+  "base_rate_train": 0.06660761736049602,
+  "trained_on": "2011-2012, 2013-2014",
+  "tested_on": "2017-2018",
+  "numeric_ranges": {
+    "age_years": {
+      "min": 20.0,
+      "p01": 20.0,
+      "median": 48.0,
+      "p99": 80.0,
+      "max": 80.0
+    },
+    "bmi": {
+      "min": 13.4,
+      "p01": 17.8,
+      "median": 27.7,
+      "p99": 51.3,
+      "max": 82.9
+    },
+    "waist_cm": {
+      "min": 55.5,
+      "p01": 68.834,
+      "median": 97.2,
+      "p99": 146.383,
+      "max": 177.9
+    },
+    "sbp_mean": {
+      "min": 64.66666666666667,
+      "p01": 92.66666666666667,
+      "median": 120.66666666666667,
+      "p99": 179.33333333333334,
+      "max": 234.66666666666666
+    },
+    "dbp_mean": {
+      "min": 3.3333333333333335,
+      "p01": 42.0,
+      "median": 70.66666666666667,
+      "p99": 100.0,
+      "max": 130.0
+    },
+    "total_chol": {
+      "min": 59.0,
+      "p01": 109.0,
+      "median": 188.0,
+      "p99": 302.78000000000065,
+      "max": 813.0
+    },
+    "hdl": {
+      "min": 10.0,
+      "p01": 26.22,
+      "median": 50.0,
+      "p99": 98.0,
+      "max": 175.0
+    },
+    "hba1c": {
+      "min": 3.5,
+      "p01": 4.5,
+      "median": 5.5,
+      "p99": 10.9,
+      "max": 17.8
+    },
+    "fasting_glucose": {
+      "min": 39.0,
+      "p01": 75.0,
+      "median": 99.0,
+      "p99": 282.6999999999998,
+      "max": 421.0
+    },
+    "drinks_per_day": {
+      "min": 0.0,
+      "p01": 0.0,
+      "median": 2.0,
+      "p99": 12.0,
+      "max": 82.0
+    }
+  },
+  "categories": {
+    "sex": [
+      "female",
+      "male"
+    ],
+    "smoking_status": [
+      "current",
+      "former",
+      "never"
+    ],
+    "diabetes": [
+      "borderline",
+      "no",
+      "yes"
+    ],
+    "ever_heavy_drinker": [
+      "no",
+      "yes"
+    ]
+  },
+  "features": [
+    "age_years",
+    "bmi",
+    "waist_cm",
+    "sbp_mean",
+    "dbp_mean",
+    "total_chol",
+    "hdl",
+    "hba1c",
+    "fasting_glucose",
+    "drinks_per_day",
+    "sex",
+    "smoking_status",
+    "diabetes",
+    "ever_heavy_drinker"
+  ],
+  "versions": {
+    "python": "3.13.5",
+    "sklearn": "1.9.1",
+    "xgboost": "3.4.1",
+    "pandas": "3.1.1"
+  }
+}

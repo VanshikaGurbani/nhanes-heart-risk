@@ -1,0 +1,22 @@
+# Local PostgreSQL for the NHANES pipeline.
+# The credentials below are throwaway values for a database bound to 127.0.0.1 only.
+services:
+  db:
+    image: postgres:17
+    container_name: nhanes_pg
+    environment:
+      POSTGRES_USER: nhanes
+      POSTGRES_PASSWORD: nhanes_local
+      POSTGRES_DB: nhanes
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - nhanes_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nhanes -d nhanes"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+
+volumes:
+  nhanes_pgdata:

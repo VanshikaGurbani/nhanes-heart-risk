@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+# raw CDC files, fixture CSVs, saved models and logs are regenerated (nhanes run-all)
+data/
+.env
+*.log
+.streamlit/secrets.toml

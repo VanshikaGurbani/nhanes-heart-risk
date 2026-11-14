@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nhanes-heart-risk"
+version = "0.1.0"
+description = "NHANES self-reported heart disease: ETL (PostgreSQL + SQL), models, notebooks, Streamlit demo"
+readme = "README.md"
+# Pinned for 3.12 and 3.13. 3.14 is excluded on purpose: shap and numba lag new Python releases.
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "numpy==2.5.4",
+    "pandas==3.1.1",
+    "scipy==1.18.1",
+    "scikit-learn==1.9.1",
+    "xgboost==3.4.1",
+    "SQLAlchemy==2.1.8",
+    "psycopg[binary]==3.3.9",
+    "matplotlib==3.11.2",
+    "requests==2.34.2",
+    "joblib==1.6.0",
+    "shap==0.54.1",
+]
+
+[project.optional-dependencies]
+serve = ["streamlit==1.67.0"]
+dev = ["pytest==9.2.0", "ruff==0.17.5"]
+notebooks = ["nbformat==5.11.1", "nbclient==0.11.0", "ipykernel==7.4.0"]
+all = ["nhanes-heart-risk[serve,dev,notebooks]"]
+
+[project.scripts]
+nhanes = "nhanes.cli:main"
+
+[tool.setuptools]
+packages = ["nhanes"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = ["db: needs a running PostgreSQL (set NHANES_DB_URL or run docker compose up -d)"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+"notebooks/*.ipynb" = ["E501", "B905", "B007", "F401", "I001"]
+"scripts/*.py" = ["E501"]
+# long prose strings, table rows and plotting calls read better unwrapped
+"nhanes/report.py" = ["E501"]
+"nhanes/plots.py" = ["E501"]
+"nhanes/fixture.py" = ["E501"]
+"tests/*.py" = ["E501"]
+"app/streamlit_app.py" = ["E501"]

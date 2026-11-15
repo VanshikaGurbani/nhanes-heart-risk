@@ -1,0 +1,4 @@
+# Used by Streamlit Community Cloud (and pip) to run app/streamlit_app.py.
+# The saved model needs the nhanes package to load, so this installs the repo itself.
+streamlit==1.67.0
+.

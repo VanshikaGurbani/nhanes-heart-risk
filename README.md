@@ -2,6 +2,8 @@
 
 An end-to-end data pipeline and modeling project: it downloads public CDC health survey files, cleans them in PostgreSQL, trains three models, tests them on a later survey period, and shows the result in a small web app. Educational only, not medical advice.
 
+**Live demo:** https://heartrisk-prediction-system.streamlit.app/ (the app may take a few seconds to wake up if nobody has used it for a while)
+
 ![Trade-off between catching cases and false alarms](docs/figures/threshold_tradeoff.png)
 
 ## What is this?

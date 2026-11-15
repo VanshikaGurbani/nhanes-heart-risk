@@ -1,6 +1,6 @@
 # NHANES Heart Risk: predicting self-reported heart disease from CDC survey data
 
-> An end-to-end data pipeline and modeling project: it downloads public CDC health survey files, cleans them in PostgreSQL, trains three models, tests them on a later survey period, and shows the result in a small web app. Educational only, not medical advice.
+An end-to-end data pipeline and modeling project: it downloads public CDC health survey files, cleans them in PostgreSQL, trains three models, tests them on a later survey period, and shows the result in a small web app. Educational only, not medical advice.
 
 ![Trade-off between catching cases and false alarms](docs/figures/threshold_tradeoff.png)
 

@@ -106,8 +106,11 @@ def headline(R: dict) -> str:
     )
 
 
-def plain_english(R: dict) -> str:
-    """The results explained without jargon. Every number is formatted from `R`."""
+def plain_english(R: dict, short: bool = False) -> str:
+    """The results explained without jargon. Every number is formatted from `R`.
+
+    `short=True` is the README version; RESULTS.md gets the full text with a glossary.
+    """
     sel = R["selection"]["selected"]
     test = R["data"]["splits"]["test"]
     t = R["models"][sel]["recall_target"]["test"]
@@ -149,21 +152,22 @@ def plain_english(R: dict) -> str:
         f"{pp(d[0])}, and the 95% interval ({pp(d[1])} to {pp(d[2])}) includes zero, so the data cannot "
         f"show a winner. The simple model is used because it is easier to explain.\n"
     )
-    w(
-        f"**What matters most.** Age, by a wide margin (the top feature is `{top}`). Older people report "
-        f"heart disease far more often, so a model that knows age already does most of the work.\n"
-    )
-    w(
-        f"**Why not just report accuracy?** Saying 'no heart disease' to everyone is right "
-        f"{pct(R['data']['majority_class_accuracy_test'])} of the time and finds nobody. "
-        f"So the model is judged on how many real cases it finds (recall) and how many people it "
-        f"flags who did not say yes (false alarms).\n"
-    )
+    if not short:
+        w(
+            f"**What matters most.** Age, by a wide margin (the top feature is `{top}`). Older people report "
+            f"heart disease far more often, so a model that knows age already does most of the work.\n"
+        )
+        w(
+            f"**Why not just report accuracy?** Saying 'no heart disease' to everyone is right "
+            f"{pct(R['data']['majority_class_accuracy_test'])} of the time and finds nobody. "
+            f"So the model is judged on how many real cases it finds (recall) and how many people it "
+            f"flags who did not say yes (false alarms).\n"
+        )
     w(
         f"**The trade-off at the chosen setting.** The cut-off was set on the earlier "
         f"{R['data']['splits']['valid']['survey_years']} data so that "
         f"at least {pct(R['models'][sel]['recall_target']['target'], 0)} of cases would be caught, then applied "
-        f"once to the 2017-2018 data. Out of every 1,000 adults in the test group:\n"
+        f"once to the {test['survey_years']} data. Out of every 1,000 adults in the test group:\n"
     )
     w(
         f"* about {per_1000(t['tp'] + t['fn'])} said yes, and the model flagged {per_1000(t['tp'])} of them;"
@@ -189,13 +193,14 @@ def plain_english(R: dict) -> str:
         "self-reported, the data cover the U.S. household population, and the results do not transfer "
         "to hospital patients.\n"
     )
-    w(
-        "**Words used in the tables.** *ROC-AUC*: the pair-ranking score above (50% is chance, 100% is "
-        "perfect). *PR-AUC*: a score that focuses on how clean the flagged group is, useful when cases are "
-        "rare. *Recall*: the share of real cases the model flags. *Flagged*: scored above the cut-off. "
-        "*False alarm*: flagged but did not say yes. *95% interval*: the range the true value probably "
-        f"falls in, found by re-running the test on {R['meta']['n_boot']:,} reshuffled copies of the data."
-    )
+    if not short:
+        w(
+            "**Words used in the tables.** *ROC-AUC*: the pair-ranking score above (50% is chance, 100% is "
+            "perfect). *PR-AUC*: a score that focuses on how clean the flagged group is, useful when cases are "
+            "rare. *Recall*: the share of real cases the model flags. *Flagged*: scored above the cut-off. "
+            "*False alarm*: flagged but did not say yes. *95% interval*: the range the true value probably "
+            f"falls in, found by re-running the test on {R['meta']['n_boot']:,} reshuffled copies of the data."
+        )
     return "\n".join(out)
 
 
@@ -700,34 +705,6 @@ def render_results(R: dict) -> str:
     return "\n".join(out)
 
 
-def readme_table(R: dict) -> str:
-    """Small model comparison table for the README, formatted from results.json."""
-    rows = []
-    for m, v in R["models"].items():
-        t, rt = v["test"], v["recall_target"]["test"]
-        rows.append(
-            [
-                NAMES[m],
-                ci_pct(t["roc_auc"], *t["roc_auc_ci"]),
-                ci_pct(t["pr_auc"], *t["pr_auc_ci"]),
-                pct(rt["recall"]),
-                pct(rt["flagged_share"]),
-                f"{rt['false_alarms_per_case_found']:.1f}",
-            ]
-        )
-    return table(
-        [
-            "Model",
-            "Test ROC-AUC (95% CI)",
-            "Test PR-AUC (95% CI)",
-            "Recall at the 90% threshold",
-            "Share of adults flagged",
-            "False alarms per case found",
-        ],
-        rows,
-    )
-
-
 def _replace_block(text: str, tag: str, body: str) -> str:
     return re.sub(
         rf"(<!-- {tag}:START -->\n).*?(\n<!-- {tag}:END -->)",
@@ -738,12 +715,11 @@ def _replace_block(text: str, tag: str, body: str) -> str:
 
 
 def update_readme_headline(R: dict, readme: Path) -> bool:
-    """Refresh the generated blocks (HEADLINE and TABLE markers) in the README."""
+    """Refresh the generated block (PLAIN markers) in the README."""
     if not readme.exists():
         return False
     text = readme.read_text(encoding="utf-8")
-    new = _replace_block(text, "PLAIN", plain_english(R))
-    new = _replace_block(new, "TABLE", readme_table(R))
+    new = _replace_block(text, "PLAIN", plain_english(R, short=True))
     if new != text:
         readme.write_text(new, encoding="utf-8")
         return True
